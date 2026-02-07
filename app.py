@@ -75,7 +75,7 @@ def create_pdf(image_paths, output_filename):
     pdf.output(output_filename)
 
 # --- UI Setup ---
-st.set_page_config(page_title="NPTEL Slide Extractor", layout="wide")
+st.set_page_config(page_title="Slide Extractor", layout="wide")
 st.title("Slide Extract")
 st.markdown("Extract Slide")
 
