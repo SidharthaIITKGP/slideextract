@@ -76,8 +76,8 @@ def create_pdf(image_paths, output_filename):
 
 # --- UI Setup ---
 st.set_page_config(page_title="NPTEL Slide Extractor", layout="wide")
-st.title("📺 High-Res NPTEL Slide Extractor")
-st.markdown("Extract HD slides from lecture videos.")
+st.title("Slide Extract")
+st.markdown("Extract Slide")
 
 # Sidebar
 with st.sidebar:
@@ -85,11 +85,11 @@ with st.sidebar:
     interval = st.slider("Capture Interval (seconds)", 5, 60, 10)
     threshold = st.slider("Change Threshold", 1.0, 50.0, 5.0)
     
-    st.markdown("### 🎭 Professor Masking")
+    st.markdown("### Masking")
     mask_position = st.selectbox("Professor Position", ["Bottom Left", "Bottom Right", "None"], index=0)
     mask_size = st.slider("Mask Size (%)", 10, 50, 30)
 
-url = st.text_input("YouTube Video URL", "https://youtu.be/0aINWe1gMi4")
+url = st.text_input("YouTube Video URL")
 
 if st.button("Extract Slides"):
     if not url:
