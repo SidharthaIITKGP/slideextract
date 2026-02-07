@@ -1,6 +1,6 @@
 streamlit
 opencv-python-headless
-yt-dlp
+yt-dlp>=2024.1.1
 img2pdf
 numpy
 fpdf2

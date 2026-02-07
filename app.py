@@ -19,6 +19,12 @@ def download_video(youtube_url, output_path, progress_callback=None):
         'http_headers': {
             'User-Agent': 'Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/120.0.0.0 Safari/537.36',
         },
+        # Use YouTube mobile client (less restricted)
+        'extractor_args': {
+            'youtube': {
+                'player_client': ['android', 'web'],
+            }
+        },
         # Retry and error handling
         'retries': 10,
         'fragment_retries': 10,
