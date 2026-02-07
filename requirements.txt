@@ -1,0 +1,7 @@
+streamlit
+opencv-python
+yt-dlp
+img2pdf
+numpy
+fpdf2
+Pillow
