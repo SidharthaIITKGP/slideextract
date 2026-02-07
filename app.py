@@ -15,6 +15,17 @@ def download_video(youtube_url, output_path, progress_callback=None):
         'outtmpl': output_path,
         'quiet': True,
         'no_warnings': True,
+        # Add browser-like headers to bypass YouTube bot detection
+        'http_headers': {
+            'User-Agent': 'Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/120.0.0.0 Safari/537.36',
+        },
+        # Retry and error handling
+        'retries': 10,
+        'fragment_retries': 10,
+        'skip_unavailable_fragments': True,
+        # Bypass geo-restrictions
+        'geo_bypass': True,
+        'nocheckcertificate': True,
     }
     
     # Add progress hook if callback provided
@@ -101,7 +112,7 @@ if st.button("Extract Slides"):
         with tempfile.TemporaryDirectory() as temp_dir:
             # Download video to local file first
             video_path = os.path.join(temp_dir, "video.mp4")
-            status_text.text("📥 Downloading video... (this ensures fast processing)")
+            status_text.text(" Downloading video...")
             
             video_title = download_video(url, video_path)
             
