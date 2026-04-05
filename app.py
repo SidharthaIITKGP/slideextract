@@ -15,23 +15,6 @@ def download_video(youtube_url, output_path, progress_callback=None):
         'outtmpl': output_path,
         'quiet': True,
         'no_warnings': True,
-        # Add browser-like headers to bypass YouTube bot detection
-        'http_headers': {
-            'User-Agent': 'Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/120.0.0.0 Safari/537.36',
-        },
-        # Use YouTube mobile client (less restricted)
-        'extractor_args': {
-            'youtube': {
-                'player_client': ['android', 'web'],
-            }
-        },
-        # Retry and error handling
-        'retries': 10,
-        'fragment_retries': 10,
-        'skip_unavailable_fragments': True,
-        # Bypass geo-restrictions
-        'geo_bypass': True,
-        'nocheckcertificate': True,
     }
     
     # Add progress hook if callback provided
@@ -92,9 +75,9 @@ def create_pdf(image_paths, output_filename):
     pdf.output(output_filename)
 
 # --- UI Setup ---
-st.set_page_config(page_title="Slide Extractor", layout="wide")
-st.title("Slide Extract")
-st.markdown("Extract Slide")
+st.set_page_config(page_title="NPTEL Slide Extractor", layout="wide")
+st.title("📺 High-Res NPTEL Slide Extractor")
+st.markdown("Extract HD slides from lecture videos.")
 
 # Sidebar
 with st.sidebar:
@@ -102,11 +85,11 @@ with st.sidebar:
     interval = st.slider("Capture Interval (seconds)", 5, 60, 10)
     threshold = st.slider("Change Threshold", 1.0, 50.0, 5.0)
     
-    st.markdown("### Masking")
+    st.markdown("### 🎭 Professor Masking")
     mask_position = st.selectbox("Professor Position", ["Bottom Left", "Bottom Right", "None"], index=0)
     mask_size = st.slider("Mask Size (%)", 10, 50, 30)
 
-url = st.text_input("YouTube Video URL")
+url = st.text_input("YouTube Video URL", "https://youtu.be/0aINWe1gMi4")
 
 if st.button("Extract Slides"):
     if not url:
@@ -118,7 +101,7 @@ if st.button("Extract Slides"):
         with tempfile.TemporaryDirectory() as temp_dir:
             # Download video to local file first
             video_path = os.path.join(temp_dir, "video.mp4")
-            status_text.text(" Downloading video...")
+            status_text.text("📥 Downloading video... (this ensures fast processing)")
             
             video_title = download_video(url, video_path)
             
